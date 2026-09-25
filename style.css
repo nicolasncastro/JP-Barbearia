@@ -196,7 +196,7 @@ h2 {
   /* Foto de fundo com camada escura por cima para o texto aparecer */
   background:
     linear-gradient(rgba(18, 18, 18, 0.75), rgba(18, 18, 18, 0.9)),
-    url('ambiente.jpg') center/cover no-repeat;
+    url('img/ambiente.jpg') center/cover no-repeat;
 }
 
 .hero-tag {
