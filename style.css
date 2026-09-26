@@ -11,7 +11,8 @@
   --cor-texto: #e8e8e8;        /* texto principal */
   --cor-texto-fraco: #a3a3a3;  /* texto secundário */
   --cor-borda: #2c2c2c;        /* bordas discretas */
-  --fonte-titulo: Georgia, 'Times New Roman', serif;
+  /* --fonte-titulo: Georgia, 'Times New Roman', serif; */
+  --fonte-titulo: IdiqlaT;
   --fonte-texto: 'Segoe UI', Arial, sans-serif;
 }
 
@@ -63,6 +64,12 @@ h1, h2, h3 {
 h2 {
   font-size: 2.2rem;
   margin-bottom: 2rem;
+}
+
+.nome {
+  font-family: Bebas Neue;
+  font-size: 3.5rem;
+  color: var(--cor-destaque);
 }
 
 .secao {
@@ -235,13 +242,14 @@ h2 {
 .sobre-container {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
-  gap: 3rem;
+  gap: 5rem;
   align-items: center;
 }
 
 .sobre-foto img {
   border-radius: 8px;
-  border: 3px solid var(--cor-destaque);
+  /* border: 3px solid var(--cor-destaque); */
+  box-shadow: 2px 2px 16px rgba(2, 1, 0, 8);
 }
 
 .sobre-texto h2 {
