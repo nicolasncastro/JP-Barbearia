@@ -11,9 +11,9 @@
   --cor-texto: #e8e8e8;        /* texto principal */
   --cor-texto-fraco: #a3a3a3;  /* texto secundário */
   --cor-borda: #2c2c2c;        /* bordas discretas */
-  /* --fonte-titulo: Georgia, 'Times New Roman', serif; */
   --fonte-titulo: IdiqlaT;
   --fonte-texto: 'Segoe UI', Arial, sans-serif;
+  --fonte-nome-barbearia: Asimovian;
 }
 
 /* ---------- Reset básico ---------- */
@@ -56,7 +56,12 @@ ul {
 }
 
 /* ---------- Títulos e tags de seção ---------- */
-h1, h2, h3 {
+
+h1 {
+  font-family: var(--fonte-nome-barbearia);
+}
+
+h2, h3 {
   font-family: var(--fonte-titulo);
   letter-spacing: 1px;
 }
@@ -137,6 +142,7 @@ h2 {
 }
 
 .logo {
+  font-family: Asimovian;
   font-size: 1.4rem;
   display: flex;
   align-items: center;
@@ -202,8 +208,8 @@ h2 {
   align-items: center;
   /* Foto de fundo com camada escura por cima para o texto aparecer */
   background:
-    linear-gradient(rgba(18, 18, 18, 0.75), rgba(18, 18, 18, 0.9)),
-    url('img/ambiente.jpg') center/cover no-repeat;
+    linear-gradient(rgba(18, 18, 18, 0.825), rgba(18, 18, 18, 0.925)),
+    url('img/gbarbershop.png') center/cover no-repeat;
 }
 
 .hero-tag {
@@ -214,13 +220,14 @@ h2 {
 }
 
 .hero h1 {
-  font-size: 4rem;
+  font-size: 4.5rem;
   line-height: 1.1;
   margin-bottom: 1.5rem;
 }
 
 .hero h1 span {
   color: var(--cor-destaque);
+  /* font-size: 2.8rem; */
 }
 
 .hero-descricao {
@@ -249,7 +256,7 @@ h2 {
 .sobre-foto img {
   border-radius: 8px;
   /* border: 3px solid var(--cor-destaque); */
-  box-shadow: 2px 2px 16px rgba(2, 1, 0, 8);
+  box-shadow: 8px 8px 12px rgb(0, 0, 0);
 }
 
 .sobre-texto h2 {
@@ -466,13 +473,18 @@ h2 {
    ============================================================ */
 .footer {
   border-top: 1px solid var(--cor-borda);
-  padding: 2.5rem 0;
+  padding: 1.5rem 0;
   text-align: center;
+}
+
+.footer .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .footer .logo {
   justify-content: center;
-  margin-bottom: 0.8rem;
 }
 
 .footer p {
@@ -562,5 +574,10 @@ h2 {
   .servicos-grid,
   .galeria-grid {
     grid-template-columns: 1fr;
+  }
+
+  .footer .container {
+    flex-direction: column;
+    gap: 0.5rem;
   }
 }
