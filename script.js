@@ -48,3 +48,79 @@ window.addEventListener('scroll', () => {
     header.style.boxShadow = 'none';
   }
 });
+
+
+
+
+
+// SEÇÃO GALERIA
+function iniciarGaleria() {
+  const carrossel = document.querySelector(".galeria-carrossel");
+  const track = carrossel?.querySelector(".galeria-track");
+  const grupoOriginal = track?.querySelector(".galeria-grupo");
+
+  if (!carrossel || !track || !grupoOriginal) return;
+
+  // Duplica a sequência para criar o movimento infinito
+  const clone = grupoOriginal.cloneNode(true);
+
+  clone.setAttribute("aria-hidden", "true");
+
+  clone.querySelectorAll("img").forEach((img) => {
+    img.alt = "";
+  });
+
+  track.appendChild(clone);
+
+  const cards = [...track.querySelectorAll(".galeria-card")];
+
+  function atualizarGaleria() {
+    const area = carrossel.getBoundingClientRect();
+    const centro = area.left + area.width / 2;
+    const metadeLargura = area.width / 2 || 1;
+
+    cards.forEach((card) => {
+      const visual = card.querySelector(".galeria-card__visual");
+      const rect = card.getBoundingClientRect();
+
+      // Distância horizontal do centro do carrossel
+      const posicao =
+        (rect.left + rect.width / 2 - centro) / metadeLargura;
+
+      const distancia = Math.min(Math.abs(posicao), 1.2);
+
+      // Cartões inclinam para fora conforme chegam às laterais
+      const rotacao = Math.max(
+        -44,
+        Math.min(44, posicao * 50)
+      );
+
+      // Laterais ficam ligeiramente mais baixas e menores
+      const vertical = distancia * 250;
+      const escala = 1 - distancia * 0.09;
+
+      // Efeito de profundidade nas extremidades
+      const opacidade = Math.max(0.42, 1 - distancia * 0.42);
+      const brilho = Math.max(0.48, 1 - distancia * 0.40);
+
+      visual.style.transform = `
+        translateY(${vertical}px)
+        rotate(${rotacao}deg)
+        scale(${escala})
+      `;
+
+      visual.style.opacity = opacidade;
+      visual.style.filter = `brightness(${brilho})`;
+    });
+
+    requestAnimationFrame(atualizarGaleria);
+  }
+
+  requestAnimationFrame(atualizarGaleria);
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", iniciarGaleria);
+} else {
+  iniciarGaleria();
+}
