@@ -3,8 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Galvão Barbershop | Estilo & Tradição</title>
-  <meta name="description" content="JP Barbearia — cortes modernos, barba alinhada e combos com os melhores preços. Agende seu horário com João Pedro.">
+  <title>Galvão Barbershop | Cortes, Barba e Agendamento</title>
+  <meta name="description" content="Conheça a Galvão Barbershop: cortes, barba, pigmentação e outros serviços com João Pedro. Confira horários, preços e agende pelo WhatsApp.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#121212">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Galvão Barbershop">
+  <meta property="og:title" content="Galvão Barbershop | Cortes, Barba e Agendamento">
+  <meta property="og:description" content="Cortes, barba, pigmentação e outros serviços com João Pedro. Confira horários e agende pelo WhatsApp.">
+  <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="style.css">
   <!-- Ícones (biblioteca de fontes de ícones gratuita) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -14,6 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Asimovian&family=Bebas+Neue&family=Idiqlat:wght@200;300;400&display=swap" rel="stylesheet">
 
@@ -39,11 +48,8 @@
       <nav class="nav" id="nav">
         <ul class="nav-list">
           <li><a href="#inicio" class="nav-link">Início</a></li>
-          <li><a href="#sobre" class="nav-link">Sobre</a></li>
-          <li><a href="#servicos" class="nav-link">Serviços</a></li>
           <li><a href="#galeria" class="nav-link">Galeria</a></li>
           <li><a href="#horarios" class="nav-link">Horários</a></li>
-          <li><a href="#localizacao" class="nav-link">Localização</a></li>
         </ul>
       </nav>
     </div>
@@ -54,10 +60,9 @@
     <div class="container hero-container">
       <div class="hero-texto">
         <h1>Galvão <span>Barbershop</span></h1>
-        <!-- <p class="hero-descricao">
-          Cortes modernos, barba impecável e aquele atendimento que faz você
-          voltar sempre. Agende seu horário e saia daqui renovado.
-        </p> -->
+        <p class="hero-descricao">
+          Corte, estilo e confiança em cada visita.
+        </p>
         <div class="hero-botoes">
           <a href="#servicos" class="btn btn-secundario">
             Agendar Horário
@@ -72,11 +77,11 @@
   <section class="secao sobre" id="sobre">
     <div class="container sobre-container">
       <div class="sobre-foto">
-        <img src="img/joao-pedro1.jpg" alt="João Pedro, barbeiro da JP Barbearia">
+        <img src="img/joao-pedro1.jpg" alt="João Pedro, barbeiro da Galvão Barbershop">
       </div>
       <div class="sobre-texto">
-        <p class="secao-tag secao-titulo">Sobre mim</p>
-        <h2 class="nome">JOÃO PEDRO</h2>
+        <!-- <h2 class="secao-tag secao-titulo">Conheça o barbeiro</h2> -->
+        <h3 class="nome">JOÃO PEDRO</h3>
         <p>
           Barbeiro há mais de 8 anos, João Pedro transformou a paixão pela
           navalha em profissão. Especialista em cortes clássicos e modernos,
@@ -98,18 +103,20 @@
   <!-- ============ SEÇÃO SERVIÇOS E PREÇOS ============ -->
   <section class="secao servicos" id="servicos">
     <div class="container">
-      <p class="secao-tag centro secao-titulo">Nossos serviços</p>
-      <p class="servicos-instrucao centro">Clique para agendar</p>
-      <!-- <h2 class="centro">Serviços</h2> -->
+      <h2 class="secao-tag centro secao-titulo">Serviços da barbearia</h2>
+      <div class="servicos-dica">
+        <p class="servicos-instrucao centro">Selecione para agendar <span class="seta-agendamento" aria-hidden="true">↓</span></p>
+        
+      </div>
 
       <ul class="servicos-lista" aria-label="Serviços e preços">
         <li><button class="servico-linha" type="button" data-servico="Corte" data-tempo="40 min" data-preco="R$ 35" aria-pressed="false"><span class="servico-nome">Corte</span><span class="servico-detalhes"><span class="servico-tempo">40 min</span><span class="servico-preco">R$ 35</span></span></button></li>
         <li><button class="servico-linha" type="button" data-servico="Pezinho do cabelo" data-tempo="15 min" data-preco="R$ 15" aria-pressed="false"><span class="servico-nome">Pezinho do cabelo</span><span class="servico-detalhes"><span class="servico-tempo">15 min</span><span class="servico-preco">R$ 15</span></span></button></li>
-        <li><button class="servico-linha" type="button" data-servico="Sombrancelha" data-tempo="15 min" data-preco="R$ 10" aria-pressed="false"><span class="servico-nome">Sombrancelha</span><span class="servico-detalhes"><span class="servico-tempo">15 min</span><span class="servico-preco">R$ 10</span></span></button></li>
+        <li><button class="servico-linha" type="button" data-servico="Sobrancelha" data-tempo="15 min" data-preco="R$ 10" aria-pressed="false"><span class="servico-nome">Sobrancelha</span><span class="servico-detalhes"><span class="servico-tempo">15 min</span><span class="servico-preco">R$ 10</span></span></button></li>
         <li><button class="servico-linha" type="button" data-servico="Barba" data-tempo="30 min" data-preco="R$ 30" aria-pressed="false"><span class="servico-nome">Barba</span><span class="servico-detalhes"><span class="servico-tempo">30 min</span><span class="servico-preco">R$ 30</span></span></button></li>
         <li><button class="servico-linha" type="button" data-servico="Pezinho + Barba" data-tempo="45 min" data-preco="R$ 45" aria-pressed="false"><span class="servico-nome">Pezinho + Barba</span><span class="servico-detalhes"><span class="servico-tempo">45 min</span><span class="servico-preco">R$ 45</span></span></button></li>
         <li><button class="servico-linha" type="button" data-servico="Corte + Barba" data-tempo="1h 10min" data-preco="R$ 60" aria-pressed="false"><span class="servico-nome">Corte + Barba</span><span class="servico-detalhes"><span class="servico-tempo">1h 10min</span><span class="servico-preco">R$ 60</span></span></button></li>
-        <li><button class="servico-linha" type="button" data-servico="Combo | Corte + Barba + Sombrancelha" data-tempo="1h 20min" data-preco="R$ 70" aria-pressed="false"><span class="servico-nome">Combo | Corte + Barba + Sombrancelha</span><span class="servico-detalhes"><span class="servico-tempo">1h 20min</span><span class="servico-preco">R$ 70</span></span></button></li>
+        <li><button class="servico-linha" type="button" data-servico="Combo | Corte + Barba + Sobrancelha" data-tempo="1h 20min" data-preco="R$ 70" aria-pressed="false"><span class="servico-nome">Combo | Corte + Barba + Sobrancelha</span><span class="servico-detalhes"><span class="servico-tempo">1h 20min</span><span class="servico-preco">R$ 70</span></span></button></li>
         <li><button class="servico-linha" type="button" data-servico="Pigmentação" data-tempo="30 min" data-preco="R$ 30" aria-pressed="false"><span class="servico-nome">Pigmentação</span><span class="servico-detalhes"><span class="servico-tempo">30 min</span><span class="servico-preco">R$ 30</span></span></button></li>
         <li><button class="servico-linha" type="button" data-servico="Pigmentação + Corte" data-tempo="1h 10min" data-preco="R$ 65" aria-pressed="false"><span class="servico-nome">Pigmentação + Corte</span><span class="servico-detalhes"><span class="servico-tempo">1h 10min</span><span class="servico-preco">R$ 65</span></span></button></li>
         <li><button class="servico-linha" type="button" data-servico="Pigmentação + Barba" data-tempo="1h" data-preco="Consultar" aria-pressed="false"><span class="servico-nome">Pigmentação + Barba</span><span class="servico-detalhes"><span class="servico-tempo">1h</span><span class="servico-preco">R$ 60</span></span></button></li>
@@ -126,7 +133,7 @@
   <!-- ============ SEÇÃO GALERIA ============ -->
   <section class="secao galeria" id="galeria">
     <div class="container">
-      <p class="secao-tag centro secao-titulo">Nosso espaço</p>
+      <h2 class="secao-tag centro secao-titulo">Conheça um pouco do nosso trabalho</h2>
 
       <div
         class="galeria-carrossel"
@@ -139,25 +146,25 @@
 
             <div class="galeria-card">
               <div class="galeria-card__visual">
-                <img src="img/ambiente1.jpg" alt="Ambiente da barbearia">
+                <img src="img/corte1.png" alt="Barbeiro atendendo um cliente e detalhes do interior da Galvão Barbershop" loading="lazy" decoding="async">
               </div>
             </div>
 
             <div class="galeria-card">
               <div class="galeria-card__visual">
-                <img src="img/bancada.webp" alt="Ferramentas e bancada do barbeiro">
+                <img src="img/corte2.png" alt="Bancada de barbearia com produtos e ferramentas de trabalho" loading="lazy" decoding="async">
               </div>
             </div>
 
             <div class="galeria-card">
               <div class="galeria-card__visual">
-                <img src="img/gbarbershop.png" alt="Barbearia com logo na parede">
+                <img src="img/corte3.png" alt="Recepção da Galvão Barbershop com a marca na parede" loading="lazy" decoding="async">
               </div>
             </div>
 
             <div class="galeria-card">
               <div class="galeria-card__visual">
-                <img src="img/ambiente1.jpg" alt="">
+                <img src="img/corte4.png" alt="Interior de barbearia com cadeiras e espelhos" loading="lazy" decoding="async">
               </div>
             </div>
 
@@ -171,7 +178,7 @@
   <!-- ============ SEÇÃO LOCALIZAÇÃO, HORÁRIOS E MÍDIAS ============ -->
   <section class="secao localizacao" id="localizacao">
     <div class="container">
-      <p class="secao-tag centro secao-titulo">Onde nos encontrar</p>
+      <h2 class="secao-tag centro secao-titulo">Localização da Barbearia</h2>
 
       <div class="localizacao-container">
         <div class="localizacao-info">
@@ -199,7 +206,7 @@
 
           <h3>Siga a Galvão Barbershop</h3>
           <div class="redes-sociais">
-            <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+            <a href="https://www.instagram.com/jp_barberrr/" target="_blank" aria-label="Instagram">
               <i class="fa-brands fa-instagram"></i>
             </a>
             <a href="https://facebook.com" target="_blank" aria-label="Facebook">
@@ -229,11 +236,10 @@
   <!-- ============ RODAPÉ ============ -->
   <footer class="footer">
     <div class="container">
-      <a href="#inicio" class="logo">
-        <i class="fa-solid fa-crown"></i>
-        <span>Galvão <strong>Barbershop</strong></span>
-      </a>
       <p>&copy; 2026 Galvão Barbershop. Todos os direitos reservados.</p>
+      <a href="https://www.instagram.com/ntech.web/" class="ntech">
+        Desenvolvido pela NTech.
+      </a>
     </div>
   </footer>
 

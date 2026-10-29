@@ -242,3 +242,52 @@ function iniciarAnimacaoLinhasServicos() {
 }
 
 iniciarAnimacaoLinhasServicos();
+
+// Reveal dos títulos H2 das seções ao entrarem na tela
+function iniciarRevealTitulosSecoes() {
+  const titulos = [...document.querySelectorAll(".secao h2")];
+
+  if (!titulos.length) return;
+
+  titulos.forEach((titulo) => titulo.classList.add("titulo-reveal"));
+
+  let observador;
+  if ("IntersectionObserver" in window) {
+    observador = new IntersectionObserver((entradas) => {
+      entradas.forEach((entrada) => {
+        if (entrada.isIntersecting) revelarTitulo(entrada.target);
+      });
+    }, { threshold: 0.01, rootMargin: "0px 0px -4% 0px" });
+
+    titulos.forEach((titulo) => observador.observe(titulo));
+  }
+
+  function revelarTitulo(titulo) {
+    titulo.classList.add("is-visible");
+    observador?.unobserve(titulo);
+  }
+
+  let quadroPendente = false;
+  function verificarTitulosVisiveis() {
+    if (quadroPendente) return;
+    quadroPendente = true;
+
+    requestAnimationFrame(() => {
+      quadroPendente = false;
+      titulos.forEach((titulo) => {
+        if (titulo.classList.contains("is-visible")) return;
+
+        const retangulo = titulo.getBoundingClientRect();
+        if (retangulo.top < window.innerHeight * 0.88 && retangulo.bottom > 0) {
+          revelarTitulo(titulo);
+        }
+      });
+    });
+  }
+
+  window.addEventListener("scroll", verificarTitulosVisiveis, { passive: true });
+  window.addEventListener("resize", verificarTitulosVisiveis);
+  verificarTitulosVisiveis();
+}
+
+iniciarRevealTitulosSecoes();
