@@ -11,7 +11,7 @@
   --cor-texto: #e8e8e8;        /* texto principal */
   --cor-texto-fraco: #a3a3a3;  /* texto secundário */
   --cor-borda: #2c2c2c;        /* bordas discretas */
-  --fonte-titulo: IdiqlaT;
+  --fonte-titulo: 'Inter';
   --fonte-texto: 'Segoe UI', Arial, sans-serif;
   --fonte-nome-barbearia: Asimovian;
 }
@@ -77,16 +77,26 @@ h2 {
   color: var(--cor-destaque);
 }
 
+.changa-one-regular {
+  font-family: "Changa One", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
 .secao {
-  padding: 5rem 0;
+  padding: 3rem 0;
 }
 
 .secao-tag {
   color: var(--cor-destaque);
   text-transform: uppercase;
   letter-spacing: 3px;
-  font-size: 1.4rem; /* era 0.8 */
+  font-size: 1.6rem; /* era 0.8 */
   margin-bottom: 2.4rem;
+}
+
+.secao-titulo {
+  font-family: 'playfair display', serif;
 }
 
 .centro {
@@ -212,15 +222,13 @@ h2 {
     url('img/gbarbershop.png') center/cover no-repeat;
 }
 
-.hero-tag {
-  color: var(--cor-destaque);
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  margin-bottom: 1rem;
+.hero-texto {
+  text-align: center;
+  transform: translateY(1.5rem);
 }
 
 .hero h1 {
-  font-size: 4.5rem;
+  font-size: 5.04rem;
   line-height: 1.1;
   margin-bottom: 1.5rem;
 }
@@ -239,8 +247,91 @@ h2 {
 
 .hero-botoes {
   display: flex;
+  justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
+}
+
+/* Entrada suave dos textos e botões do hero ao abrir a página */
+.hero h1,
+.hero-descricao,
+.hero-botoes .btn {
+  opacity: 0;
+  animation: hero-entrada 0.7s ease-out forwards;
+}
+
+.hero h1 {
+  animation-delay: 0.15s;
+}
+
+.hero-descricao {
+  animation-delay: 0.3s;
+}
+
+.hero-botoes .btn:first-child {
+  animation-delay: 0.45s;
+}
+
+.hero-botoes .btn:last-child {
+  animation-delay: 0.6s;
+}
+
+@property --hero-brilho-angulo {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.hero-botoes .btn-secundario {
+  position: relative;
+  isolation: isolate;
+}
+
+.servico-agendar {
+  isolation: isolate;
+}
+
+@supports (mask-composite: exclude) or (-webkit-mask-composite: xor) {
+  .hero-botoes .btn-secundario::before,
+  .servico-agendar::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    padding: 2px;
+    border-radius: 6px;
+    background: conic-gradient(
+      from var(--hero-brilho-angulo),
+      transparent 0deg 275deg,
+      rgba(255, 255, 255, 0.22) 290deg,
+      #fff1bd 300deg,
+      var(--cor-destaque) 312deg,
+      transparent 330deg 360deg
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+    animation: brilho-contorno 3s linear infinite;
+  }
+}
+
+@keyframes brilho-contorno {
+  to {
+    --hero-brilho-angulo: 360deg;
+  }
+}
+
+@keyframes hero-entrada {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ============================================================
@@ -281,6 +372,21 @@ h2 {
   margin-right: 0.5rem;
 }
 
+/* Entrada sequencial do texto da seção Sobre */
+.sobre-texto.sobre-reveal-ready .sobre-reveal-item {
+  opacity: 0;
+  transform: translateX(70px);
+  transition:
+    opacity 0.75s ease,
+    transform 0.75s ease;
+  transition-delay: var(--sobre-atraso, 0ms);
+}
+
+.sobre-texto.sobre-reveal-ready.sobre-reveal-visivel .sobre-reveal-item {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 /* ============================================================
    SERVIÇOS
    ============================================================ */
@@ -288,66 +394,161 @@ h2 {
   background-color: var(--cor-fundo-2);
 }
 
-.servicos-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.servicos-instrucao {
+  font-family: var(--fonte-titulo);
+  color: var(--cor-texto);
+  margin: -1.8rem 0 2.4rem;
+  font-size: 0.95rem;
+}
+
+.servicos-lista {
+  max-width: 850px;
+  margin: 0 auto;
+  border-top: 1px solid rgba(201, 162, 75, 0.7);
+  overflow-x: clip;
+}
+
+.servicos-lista li {
+  border-bottom: 1px solid rgba(201, 162, 75, 0.7);
+}
+
+.servico-linha {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 1.5rem;
+  width: 100%;
+  padding: 1.2rem 0.75rem;
+  border: 0;
+  background: transparent;
+  color: var(--cor-texto);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.35s ease;
 }
 
-.servico-card {
-  background-color: var(--cor-fundo);
-  border: 1px solid var(--cor-borda);
-  border-radius: 8px;
-  padding: 2rem;
-  text-align: center;
-  transition: 0.3s;
+.servico-linha:hover,
+.servico-linha.is-selected {
+  background-color: rgba(201, 162, 75, 0.09);
+}
+
+.servico-linha:focus-visible {
+  outline: 2px solid var(--cor-destaque);
+  outline-offset: -2px;
+}
+
+.servico-linha.is-selected {
+  box-shadow:
+    inset 3px 0 var(--cor-destaque),
+    0 0 18px rgba(201, 162, 75, 0.13);
+}
+
+.servico-linha.is-selected .servico-nome {
+  color: var(--cor-destaque);
+}
+
+.servicos-lista.servicos-revelar .servico-linha {
+  opacity: 0;
+  transform: translateX(var(--direcao-entrada, 42px));
+  transition:
+    opacity 0.55s ease,
+    transform 0.6s cubic-bezier(0.2, 0.75, 0.25, 1),
+    background-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.35s ease;
+  transition-delay:
+    var(--atraso-servico, 0ms),
+    var(--atraso-servico, 0ms),
+    0s,
+    0s,
+    0s;
+}
+
+.servicos-lista.servicos-revelar .servico-linha.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.servico-nome {
+  min-width: 0;
+  font-weight: 600;
+}
+
+.servico-detalhes {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: clamp(0.8rem, 3vw, 2.5rem);
+  white-space: nowrap;
+}
+
+.servico-tempo {
+  color: var(--cor-texto-fraco);
+}
+
+.servico-preco {
+  min-width: 4.5rem;
+  color: var(--cor-destaque);
+  font-size: 1.1em;
+  font-weight: 700;
+  text-align: right;
+}
+
+.servicos-agendamento {
+  display: flex;
+  min-height: 4rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.servico-agendar {
   position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  padding: 0.7rem 1.8rem;
+  border: 2px solid var(--cor-destaque);
+  border-radius: 4px;
+  background: var(--cor-fundo);
+  color: var(--cor-destaque);
+  font-weight: 700;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(18px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.45s cubic-bezier(0.2, 0.75, 0.25, 1),
+    color 0.25s ease,
+    background-color 0.25s ease,
+    visibility 0s linear 0.45s;
 }
 
-.servico-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--cor-destaque);
+.servico-agendar.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition-delay: 0s;
 }
 
-/* Card em destaque (combo) */
-.servico-card.destaque {
-  border-color: var(--cor-destaque);
-}
-
-.selo {
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%);
+.servico-agendar:hover {
   background-color: var(--cor-destaque);
   color: #121212;
-  font-size: 0.7rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  padding: 0.25rem 0.9rem;
-  border-radius: 20px;
 }
 
-.servico-icone {
-  font-size: 2rem;
-  color: var(--cor-destaque);
-  margin-bottom: 1rem;
-}
-
-.servico-card h3 {
-  margin-bottom: 0.6rem;
-}
-
-.servico-card p {
-  color: var(--cor-texto-fraco);
-  font-size: 0.9rem;
-  margin-bottom: 1.2rem;
-}
-
-.preco {
-  font-size: 1.6rem;
-  font-weight: bold;
-  color: var(--cor-destaque);
+@media (prefers-reduced-motion: reduce) {
+  .servico-agendar {
+    transition-duration: 0.01ms;
+    animation-duration: 0.01ms;
+  }
 }
 
 /* ============================================================
@@ -358,7 +559,7 @@ h2 {
   position: relative;
   width: 100%;
   overflow: hidden;
-  padding: 6.5rem 0;
+  padding: 1rem 0;
 
   /* Suaviza o desaparecimento das imagens nas laterais */
   -webkit-mask-image: linear-gradient(
@@ -382,7 +583,7 @@ h2 {
 .galeria-track {
   display: flex;
   width: max-content;
-  animation: galeria-passar 36s linear infinite;
+  animation: galeria-passar 26s linear infinite;
   will-change: transform;
 }
 
@@ -432,12 +633,6 @@ h2 {
   }
 }
 
-/* Para o movimento quando o usuário passa o mouse */
-.galeria-carrossel:hover .galeria-track,
-.galeria-carrossel:focus-within .galeria-track {
-  animation-play-state: paused;
-}
-
 /* Ajustes para celulares */
 @media (max-width: 600px) {
   .galeria-carrossel {
@@ -454,31 +649,25 @@ h2 {
   }
 }
 
-/* Respeita a preferência por menos movimento */
 @media (prefers-reduced-motion: reduce) {
   .galeria-track {
-    animation: none;
-  }
-
-  .galeria-grupo[aria-hidden="true"] {
-    display: none;
+    animation-duration: 26s;
   }
 }
 
-/* ============================================================
-   HORÁRIOS
-   ============================================================ */
-.horarios {
-  background-color: var(--cor-fundo-2);
-}
-
+/* Horários integrados à seção de localização */
 .horarios-card {
-  max-width: 500px;
-  margin: 0 auto;
-  background-color: var(--cor-fundo);
+  margin: 1.5rem 0;
+  padding: 1.25rem 1.4rem;
+  background-color: rgba(18, 18, 18, 0.76);
   border: 1px solid var(--cor-borda);
   border-radius: 8px;
-  padding: 2rem;
+  scroll-margin-top: 110px;
+}
+
+.horarios-card h3 {
+  margin: 0 0 0.5rem;
+  color: var(--cor-texto);
 }
 
 .horarios-lista li {
@@ -498,7 +687,7 @@ h2 {
 
 .horarios-obs {
   margin-top: 1.5rem;
-  font-size: 0.9rem;
+  font-size: 0.9em;
   color: var(--cor-texto-fraco);
 }
 
@@ -508,13 +697,34 @@ h2 {
 }
 
 /* ============================================================
-   LOCALIZAÇÃO + REDES SOCIAIS
+   LOCALIZAÇÃO, HORÁRIOS + REDES SOCIAIS
    ============================================================ */
+.localizacao {
+  position: relative;
+  isolation: isolate;
+  font-size: 88%;
+  background:
+    linear-gradient(rgba(18, 18, 18, 0.68), rgba(18, 18, 18, 0.82)),
+    url('img/gbarbershop.png') center 45% / cover no-repeat;
+  background-attachment: fixed;
+}
+
+.localizacao .secao-tag {
+  font-size: 1.41rem;
+}
+
 .localizacao-container {
   display: grid;
-  grid-template-columns: 1fr 1.4fr;
+  grid-template-columns: 1.25fr 1fr;
   gap: 2rem;
   align-items: stretch;
+}
+
+.localizacao-info {
+  padding: 1.5rem;
+  background-color: rgba(18, 18, 18, 0.7);
+  border: 1px solid rgba(201, 162, 75, 0.18);
+  border-radius: 8px;
 }
 
 .localizacao-info p {
@@ -527,38 +737,42 @@ h2 {
   margin-right: 0.5rem;
 }
 
-.localizacao-info h3 {
+.localizacao-info > h3 {
   margin: 1.5rem 0 1rem;
+  text-align: center;
 }
 
 .redes-sociais {
   display: flex;
+  justify-content: center;
   gap: 1rem;
 }
 
 .redes-sociais a {
-  width: 46px;
+  /* width: 46px;
   height: 46px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid var(--cor-borda);
   border-radius: 50%;
-  font-size: 1.2rem;
-  transition: 0.3s;
+  transition: 0.3s; */
+
+  font-size: 1.8rem;
 }
 
 .redes-sociais a:hover {
-  background-color: var(--cor-destaque);
-  color: #121212;
-  border-color: var(--cor-destaque);
+  transition: transform 2.3 ease;
+  transform: scale(1.3);
 }
 
 .mapa {
+  order: -1;
   min-height: 320px;
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid var(--cor-borda);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
 }
 
 /* ============================================================
@@ -566,7 +780,7 @@ h2 {
    ============================================================ */
 .footer {
   border-top: 1px solid var(--cor-borda);
-  padding: 1.5rem 0;
+  padding: 1.1rem 0;
   text-align: center;
 }
 
@@ -578,6 +792,7 @@ h2 {
 
 .footer .logo {
   justify-content: center;
+  font-size: 1.1rem;
 }
 
 .footer p {
@@ -653,24 +868,69 @@ h2 {
     grid-template-columns: 1fr;
   }
 
-  .servicos-grid,
+  .mapa {
+    order: -1;
+  }
+
   .galeria-grid {
     grid-template-columns: 1fr 1fr;
   }
 
   .hero h1 {
-    font-size: 2.6rem;
+    font-size: clamp(2.6rem, 11vw, 2.9rem);
   }
+
 }
 
 @media (max-width: 520px) {
-  .servicos-grid,
   .galeria-grid {
     grid-template-columns: 1fr;
+  }
+
+  .servicos .secao-tag {
+    font-size: 1.36rem;
+  }
+
+  .servicos-instrucao {
+    font-size: 0.81rem;
+  }
+
+  .servico-linha {
+    gap: 0.7rem;
+    padding: 1rem 0.4rem;
+    font-size: 0.85rem;
+  }
+
+  .servico-agendar {
+    font-size: 0.85rem;
+  }
+
+  .servico-preco {
+    min-width: 3.8rem;
   }
 
   .footer .container {
     flex-direction: column;
     gap: 0.5rem;
+  }
+
+  .localizacao {
+    background-attachment: scroll;
+  }
+}
+
+@media (max-width: 425px) {
+  .servico-detalhes {
+    gap: 0.55rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .localizacao {
+    background-attachment: scroll;
   }
 }

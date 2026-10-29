@@ -89,25 +89,9 @@ function iniciarGaleria() {
 
       const distancia = Math.min(Math.abs(posicao), 1.2);
 
-      // Cartões inclinam para fora conforme chegam às laterais
-      const rotacao = Math.max(
-        -44,
-        Math.min(44, posicao * 50)
-      );
-
-      // Laterais ficam ligeiramente mais baixas e menores
-      const vertical = distancia * 250;
-      const escala = 1 - distancia * 0.09;
-
       // Efeito de profundidade nas extremidades
       const opacidade = Math.max(0.42, 1 - distancia * 0.42);
       const brilho = Math.max(0.48, 1 - distancia * 0.40);
-
-      visual.style.transform = `
-        translateY(${vertical}px)
-        rotate(${rotacao}deg)
-        scale(${escala})
-      `;
 
       visual.style.opacity = opacidade;
       visual.style.filter = `brightness(${brilho})`;
@@ -124,3 +108,137 @@ if (document.readyState === "loading") {
 } else {
   iniciarGaleria();
 }
+
+// Entrada sequencial dos textos da seção Sobre ao chegar nela
+function iniciarAnimacaoSobre() {
+  const bloco = document.querySelector(".sobre-texto");
+  if (!bloco) return;
+
+  const itens = bloco.querySelectorAll(
+    ":scope > .secao-tag, :scope > h2, :scope > p, :scope > .sobre-lista li"
+  );
+
+  itens.forEach((item, indice) => {
+    item.classList.add("sobre-reveal-item");
+    item.style.setProperty("--sobre-atraso", `${indice * 130}ms`);
+  });
+
+  bloco.classList.add("sobre-reveal-ready");
+
+  let observador;
+  let revelado = false;
+  let quadroPendente = false;
+
+  function revelar() {
+    if (revelado) return;
+    revelado = true;
+    bloco.classList.add("sobre-reveal-visivel");
+    observador?.disconnect();
+    window.removeEventListener("scroll", verificarPosicao);
+    window.removeEventListener("resize", verificarPosicao);
+  }
+
+  function verificarPosicao() {
+    if (quadroPendente) return;
+    quadroPendente = true;
+
+    requestAnimationFrame(() => {
+      quadroPendente = false;
+      const retangulo = bloco.getBoundingClientRect();
+      const faixaVisivel =
+        retangulo.top < window.innerHeight * 0.75 &&
+        retangulo.bottom > window.innerHeight * 0.15;
+
+      if (faixaVisivel) revelar();
+    });
+  }
+
+  if ("IntersectionObserver" in window) {
+    observador = new IntersectionObserver(([entrada]) => {
+      if (entrada.isIntersecting) revelar();
+    }, { threshold: 0.01, rootMargin: "-15% 0px -25% 0px" });
+
+    observador.observe(bloco);
+  }
+
+  // Garante o gatilho também em navegadores/visualizações onde o observer falhe.
+  window.addEventListener("scroll", verificarPosicao, { passive: true });
+  window.addEventListener("resize", verificarPosicao);
+  verificarPosicao();
+}
+
+iniciarAnimacaoSobre();
+
+// Seleção dos serviços e links de agendamento pelo WhatsApp
+function iniciarAgendamentoServicos() {
+  const linhas = [...document.querySelectorAll(".servico-linha")];
+  const linkAgendar = document.querySelector(".servico-agendar");
+  if (!linhas.length || !linkAgendar) return;
+
+  const numeroWhatsApp = "5511999999999";
+
+  linhas.forEach((linha) => {
+    linha.addEventListener("click", () => {
+      const jaSelecionada = linha.classList.contains("is-selected");
+
+      linhas.forEach((outraLinha) => {
+        outraLinha.classList.remove("is-selected");
+        outraLinha.setAttribute("aria-pressed", "false");
+      });
+
+      if (jaSelecionada) {
+        linkAgendar.classList.remove("is-visible");
+        linkAgendar.setAttribute("aria-hidden", "true");
+        linkAgendar.tabIndex = -1;
+        return;
+      }
+
+      const nomeServico = linha.dataset.servico;
+      linha.classList.add("is-selected");
+      linha.setAttribute("aria-pressed", "true");
+      linkAgendar.href = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(
+        `Olá, quero agendar "${nomeServico}"`
+      )}`;
+      linkAgendar.setAttribute("aria-label", `Agendar ${nomeServico} pelo WhatsApp`);
+      linkAgendar.removeAttribute("aria-hidden");
+      linkAgendar.tabIndex = 0;
+      linkAgendar.classList.add("is-visible");
+    });
+  });
+}
+
+iniciarAgendamentoServicos();
+
+// Entrada alternada das linhas de serviço ao aparecerem na tela
+function iniciarAnimacaoLinhasServicos() {
+  const lista = document.querySelector(".servicos-lista");
+  const linhas = lista ? [...lista.querySelectorAll(".servico-linha")] : [];
+  if (!lista || !linhas.length) return;
+
+  lista.classList.add("servicos-revelar");
+  linhas.forEach((linha, indice) => {
+    linha.style.setProperty("--atraso-servico", `${indice * 55}ms`);
+    linha.style.setProperty(
+      "--direcao-entrada",
+      indice % 2 === 0 ? "-42px" : "42px"
+    );
+  });
+
+  if (!("IntersectionObserver" in window)) {
+    linhas.forEach((linha) => linha.classList.add("is-visible"));
+    return;
+  }
+
+  const observador = new IntersectionObserver((entradas) => {
+    entradas.forEach((entrada) => {
+      if (!entrada.isIntersecting) return;
+
+      entrada.target.classList.add("is-visible");
+      observador.unobserve(entrada.target);
+    });
+  }, { threshold: 0.1, rootMargin: "0px 0px -8% 0px" });
+
+  linhas.forEach((linha) => observador.observe(linha));
+}
+
+iniciarAnimacaoLinhasServicos();

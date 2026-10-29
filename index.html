@@ -13,6 +13,8 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Asimovian&family=Bebas+Neue&family=Idiqlat:wght@200;300;400&display=swap" rel="stylesheet">
 
 </head>
@@ -51,17 +53,16 @@
   <section class="hero" id="inicio">
     <div class="container hero-container">
       <div class="hero-texto">
-        <p class="hero-tag">Estilo &amp; Tradição</p>
         <h1>Galvão <span>Barbershop</span></h1>
-        <p class="hero-descricao">
+        <!-- <p class="hero-descricao">
           Cortes modernos, barba impecável e aquele atendimento que faz você
           voltar sempre. Agende seu horário e saia daqui renovado.
-        </p>
+        </p> -->
         <div class="hero-botoes">
-          <a href="#servicos" class="btn btn-primario">Ver Serviços</a>
-          <a href="https://wa.me/5511999999999" target="_blank" class="btn btn-secundario">
-            <i class="fa-brands fa-whatsapp"></i> Agendar Horário
+          <a href="#servicos" class="btn btn-secundario">
+            Agendar Horário
           </a>
+          <a href="#localizacao" class="btn btn-primario">Ver localização</a>
         </div>
       </div>
     </div>
@@ -74,7 +75,7 @@
         <img src="img/joao-pedro1.jpg" alt="João Pedro, barbeiro da JP Barbearia">
       </div>
       <div class="sobre-texto">
-        <p class="secao-tag">Sobre mim</p>
+        <p class="secao-tag secao-titulo">Sobre mim</p>
         <h2 class="nome">JOÃO PEDRO</h2>
         <p>
           Barbeiro há mais de 8 anos, João Pedro transformou a paixão pela
@@ -83,7 +84,7 @@
           um atendimento único.
         </p>
         <p>
-          Na JP Barbearia você não é só mais um na cadeira: é parte da família.
+          Na Galvão Barbershop você não é só mais um na cadeira: é parte da família.
         </p>
         <ul class="sobre-lista">
           <li><i class="fa-solid fa-check"></i> +8 anos de experiência</li>
@@ -97,75 +98,27 @@
   <!-- ============ SEÇÃO SERVIÇOS E PREÇOS ============ -->
   <section class="secao servicos" id="servicos">
     <div class="container">
-      <p class="secao-tag centro">Nossos serviços</p>
+      <p class="secao-tag centro secao-titulo">Nossos serviços</p>
+      <p class="servicos-instrucao centro">Clique para agendar</p>
       <!-- <h2 class="centro">Serviços</h2> -->
 
-      <div class="servicos-grid">
-        <!-- Card de serviço: copie este bloco para adicionar um novo serviço -->
-        <div class="servico-card">
-          <i class="fa-solid fa-scissors servico-icone"></i>
-          <h3>Corte</h3>
-          <p>Corte clássico ou moderno, finalizado com navalha e produtos de qualidade.</p>
-          <span class="preco">R$ 40</span>
-        </div>
+      <ul class="servicos-lista" aria-label="Serviços e preços">
+        <li><button class="servico-linha" type="button" data-servico="Corte" data-tempo="40 min" data-preco="R$ 35" aria-pressed="false"><span class="servico-nome">Corte</span><span class="servico-detalhes"><span class="servico-tempo">40 min</span><span class="servico-preco">R$ 35</span></span></button></li>
+        <li><button class="servico-linha" type="button" data-servico="Pezinho do cabelo" data-tempo="15 min" data-preco="R$ 15" aria-pressed="false"><span class="servico-nome">Pezinho do cabelo</span><span class="servico-detalhes"><span class="servico-tempo">15 min</span><span class="servico-preco">R$ 15</span></span></button></li>
+        <li><button class="servico-linha" type="button" data-servico="Sombrancelha" data-tempo="15 min" data-preco="R$ 10" aria-pressed="false"><span class="servico-nome">Sombrancelha</span><span class="servico-detalhes"><span class="servico-tempo">15 min</span><span class="servico-preco">R$ 10</span></span></button></li>
+        <li><button class="servico-linha" type="button" data-servico="Barba" data-tempo="30 min" data-preco="R$ 30" aria-pressed="false"><span class="servico-nome">Barba</span><span class="servico-detalhes"><span class="servico-tempo">30 min</span><span class="servico-preco">R$ 30</span></span></button></li>
+        <li><button class="servico-linha" type="button" data-servico="Pezinho + Barba" data-tempo="45 min" data-preco="R$ 45" aria-pressed="false"><span class="servico-nome">Pezinho + Barba</span><span class="servico-detalhes"><span class="servico-tempo">45 min</span><span class="servico-preco">R$ 45</span></span></button></li>
+        <li><button class="servico-linha" type="button" data-servico="Corte + Barba" data-tempo="1h 10min" data-preco="R$ 60" aria-pressed="false"><span class="servico-nome">Corte + Barba</span><span class="servico-detalhes"><span class="servico-tempo">1h 10min</span><span class="servico-preco">R$ 60</span></span></button></li>
+        <li><button class="servico-linha" type="button" data-servico="Combo | Corte + Barba + Sombrancelha" data-tempo="1h 20min" data-preco="R$ 70" aria-pressed="false"><span class="servico-nome">Combo | Corte + Barba + Sombrancelha</span><span class="servico-detalhes"><span class="servico-tempo">1h 20min</span><span class="servico-preco">R$ 70</span></span></button></li>
+        <li><button class="servico-linha" type="button" data-servico="Pigmentação" data-tempo="30 min" data-preco="R$ 30" aria-pressed="false"><span class="servico-nome">Pigmentação</span><span class="servico-detalhes"><span class="servico-tempo">30 min</span><span class="servico-preco">R$ 30</span></span></button></li>
+        <li><button class="servico-linha" type="button" data-servico="Pigmentação + Corte" data-tempo="1h 10min" data-preco="R$ 65" aria-pressed="false"><span class="servico-nome">Pigmentação + Corte</span><span class="servico-detalhes"><span class="servico-tempo">1h 10min</span><span class="servico-preco">R$ 65</span></span></button></li>
+        <li><button class="servico-linha" type="button" data-servico="Pigmentação + Barba" data-tempo="1h" data-preco="Consultar" aria-pressed="false"><span class="servico-nome">Pigmentação + Barba</span><span class="servico-detalhes"><span class="servico-tempo">1h</span><span class="servico-preco">R$ 60</span></span></button></li>
+        <li><button class="servico-linha" type="button" data-servico="Luzes" data-tempo="2h" data-preco="R$ 100" aria-pressed="false"><span class="servico-nome">Luzes</span><span class="servico-detalhes"><span class="servico-tempo">2h</span><span class="servico-preco">R$ 100</span></span></button></li>
+        <li><button class="servico-linha" type="button" data-servico="Platinado" data-tempo="3h" data-preco="R$ 100" aria-pressed="false"><span class="servico-nome">Platinado</span><span class="servico-detalhes"><span class="servico-tempo">3h</span><span class="servico-preco">R$ 100</span></span></button></li>
+      </ul>
 
-        <div class="servico-card">
-          <i class="fa-solid fa-wind servico-icone"></i>
-          <h3>Degradê</h3>
-          <p>Degradê navalhado, mid fade, low fade ou skin fade com acabamento perfeito.</p>
-          <span class="preco">R$ 50</span>
-        </div>
-
-        <div class="servico-card">
-          <i class="fa-solid fa-face-smile servico-icone"></i>
-          <h3>Barba</h3>
-          <p>Barba desenhada com toalha quente, navalha e óleo finalizador.</p>
-          <span class="preco">R$ 35</span>
-        </div>
-
-        <div class="servico-card">
-          <i class="fa-solid fa-eye servico-icone"></i>
-          <h3>Sombrancelha</h3>
-          <p>Corte clássico ou moderno, finalizado com navalha e produtos de qualidade.</p>
-          <span class="preco">R$ 15</span>
-        </div>
-
-        <div class="servico-card destaque">
-          <span class="selo">Mais pedido</span>
-          <i class="fa-solid fa-star servico-icone"></i>
-          <h3>Corte + Barba</h3>
-          <p>O pacote completo: corte + barba com toalha quente e finalização.</p>
-          <span class="preco">R$ 70</span>
-        </div>
-
-        <div class="servico-card">
-          <i class="fa-solid fa-child servico-icone"></i>
-          <h3>Corte Infantil</h3>
-          <p>Corte para crianças até 12 anos, com paciência e cuidado redobrado.</p>
-          <span class="preco">R$ 35</span>
-        </div>
-
-        <div class="servico-card">
-          <i class="fa-solid fa-palette servico-icone"></i>
-          <h3>Pigmentação / Luzes</h3>
-          <p>Pigmentação de barba ou cabelo e luzes para um visual diferenciado.</p>
-          <span class="preco">R$ 60</span>
-        </div>
-
-        <div class="servico-card">
-          <i class="fa-solid fa-circle servico-icone"></i>
-          <h3>Combo Completo</h3>
-          <p>A melhor opção: corte, barba com toalha quente e sombrancelha.</p>
-          <span class="preco">R$ 90</span>
-        </div>
-
-        <div class="servico-card">
-          <i class="fa-solid fa-mask-face servico-icone"></i>
-          <h3>Limpeza Nasal</h3>
-          <p>Corte clássico ou moderno, finalizado com navalha e produtos de qualidade.</p>
-          <span class="preco">R$ 10</span>
-        </div>
-
+      <div class="servicos-agendamento">
+        <a class="servico-agendar" href="#" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1">Agendar</a>
       </div>
     </div>
   </section>
@@ -173,7 +126,7 @@
   <!-- ============ SEÇÃO GALERIA ============ -->
   <section class="secao galeria" id="galeria">
     <div class="container">
-      <p class="secao-tag centro">Nosso espaço</p>
+      <p class="secao-tag centro secao-titulo">Nosso espaço</p>
 
       <div
         class="galeria-carrossel"
@@ -215,31 +168,10 @@
     </div>
   </section>
 
-  <!-- ============ SEÇÃO HORÁRIOS ============ -->
-  <section class="secao horarios" id="horarios">
-    <div class="container">
-      <p class="secao-tag centro">Horários de atendimento</p>
-      <!-- <h2 class="centro">Horários de Atendimento</h2> -->
-
-      <div class="horarios-card">
-        <ul class="horarios-lista">
-          <li><span>Segunda a Sexta</span><span>09h — 20h</span></li>
-          <li><span>Sábado</span><span>08h — 18h</span></li>
-          <li class="fechado"><span>Domingo</span><span>Fechado</span></li>
-        </ul>
-        <p class="horarios-obs">
-          <i class="fa-solid fa-circle-info"></i>
-          Atendimento com hora marcada. Agende pelo WhatsApp!
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ SEÇÃO LOCALIZAÇÃO + MÍDIAS ============ -->
+  <!-- ============ SEÇÃO LOCALIZAÇÃO, HORÁRIOS E MÍDIAS ============ -->
   <section class="secao localizacao" id="localizacao">
     <div class="container">
-      <p class="secao-tag centro">Onde nos encontrar</p>
-      <!-- <h2 class="centro">Localização</h2> -->
+      <p class="secao-tag centro secao-titulo">Onde nos encontrar</p>
 
       <div class="localizacao-container">
         <div class="localizacao-info">
@@ -251,6 +183,19 @@
             <i class="fa-solid fa-phone"></i>
             (11) 99999-9999
           </p>
+
+          <div class="horarios-card" id="horarios">
+            <h3>Horários de atendimento</h3>
+            <ul class="horarios-lista">
+              <li><span>Segunda a Sexta</span><span>09h — 20h</span></li>
+              <li><span>Sábado</span><span>08h — 18h</span></li>
+              <li class="fechado"><span>Domingo</span><span>Fechado</span></li>
+            </ul>
+            <p class="horarios-obs">
+              <i class="fa-solid fa-circle-info"></i>
+              Atendimento com hora marcada. Agende pelo WhatsApp!
+            </p>
+          </div>
 
           <h3>Siga a Galvão Barbershop</h3>
           <div class="redes-sociais">
