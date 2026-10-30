@@ -49,6 +49,20 @@ window.addEventListener('scroll', () => {
   }
 });
 
+// ---------- 5. Mostrar o WhatsApp a partir da seção Galeria ----------
+const secaoGaleria = document.getElementById('galeria');
+const botaoWhatsApp = document.querySelector('.whatsapp-flutuante');
+
+function atualizarVisibilidadeWhatsApp() {
+  if (!secaoGaleria || !botaoWhatsApp) return;
+
+  const inicioGaleria = secaoGaleria.getBoundingClientRect().top + window.scrollY;
+  botaoWhatsApp.classList.toggle('visivel', window.scrollY >= inicioGaleria);
+}
+
+window.addEventListener('scroll', atualizarVisibilidadeWhatsApp, { passive: true });
+atualizarVisibilidadeWhatsApp();
+
 
 
 

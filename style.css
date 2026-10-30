@@ -917,7 +917,16 @@ h2.secao-titulo {
   font-size: 1.8rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
   transition: 0.3s;
+}
+
+.whatsapp-flutuante.visivel {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .whatsapp-flutuante:hover {
@@ -984,6 +993,21 @@ h2.secao-titulo {
 @media (max-width: 520px) {
   header {
     display: none;
+  }
+
+  .hero-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero-texto {
+    width: 100%;
+    text-align: center;
+    transform: none;
+  }
+
+  .hero-botoes {
+    justify-content: center;
   }
 
   .hero h1 {
