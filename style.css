@@ -982,6 +982,10 @@ h2.secao-titulo {
 }
 
 @media (max-width: 520px) {
+  header {
+    display: none;
+  }
+
   .hero h1 {
     font-size: clamp(2.9rem, 13vw, 3.2rem);
   }
